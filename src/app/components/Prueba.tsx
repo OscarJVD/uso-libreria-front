@@ -1,34 +1,29 @@
-"use client";
-// import { Prueba, Responsive, Button } from 'mi-libreria-con-todo';
-import {
-  ResponsiveButton,
-  Button,
-  RadioCardOption,
-} from "mi-libreria-con-todo";
+'use client';
 
-const Prueba = () => {
+import React, { useState } from 'react';
+import Select from 'react-select';
+
+const MySelectComponent = () => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (value, { action }) => {
+    if (action === 'input-change') {
+      setInputValue(value);
+    }
+  };
+
   return (
-    <div>
-      {/* <Prueba /> */}
-      <Button intent="primary">Hola este es mi botónaa</Button>
-      <ResponsiveButton className="bg-primary-20" />
-      <RadioCardOption
-        withBigRadio={true}
-        className="gap-5"
-        option={{
-          id: 2,
-          option: (
-            <>
-              <div className="w-16">hola</div>
-            </>
-          ),
-        }}
-        selectedOptionId={1}
-        handleOptionClick={() => console.log("dfkgh")}
-      />
-      {/* <List title="Beneficio 1" description="Tasa fija según el monto de inversión" /> */}
-    </div>
+    <Select
+      onInputChange={handleInputChange}
+      inputValue={inputValue}
+      isSearchable={true}
+      options={[
+        { value: 'option1', label: 'Option 1' },
+        { value: 'option2', label: 'Option 2' },
+      ]}
+      menuIsOpen={false}
+    />
   );
 };
 
-export default Prueba;
+export default MySelectComponent;
